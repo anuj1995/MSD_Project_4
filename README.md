@@ -1,8 +1,10 @@
 Workload division:
 
 Anuj:
-  Navigation Bar
+  Navigation Bar,
   Database
   
 Dakota:
-  Quiz view and swiping
+  Quiz view, 
+  Swiping,
+  Quiz history view
