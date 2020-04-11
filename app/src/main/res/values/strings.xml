@@ -13,4 +13,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="intro">Welcome to Geography Quiz! Here, you may test your knowledge of countries by quizzing yourself on their continents and neighbors. To start a new quiz, select \"New Quiz\" below. Remember, there is only one correct continent and neighbor per question. To view your previous quizzes, select \"Quiz History\" below.</string>
 </resources>

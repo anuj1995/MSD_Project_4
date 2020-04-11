@@ -16,7 +16,7 @@ public class Introduction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
 
-        introButton = (Button) findViewById(R.id.introButton);
+        introButton = (Button) findViewById(R.id.newQuiz);
         introButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

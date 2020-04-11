@@ -1,12 +1,9 @@
-package edu.uga.cs.quiz_app.ui;
+package edu.uga.cs.quiz_app;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
-import edu.uga.cs.quiz_app.MainActivity;
-import edu.uga.cs.quiz_app.R;
 
 public class Splash extends Activity {
 
@@ -25,7 +22,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(Splash.this, MainActivity.class);
+                Intent mainIntent = new Intent(Splash.this, Introduction.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }
