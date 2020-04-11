@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment {
         Bundle page7 = new Bundle();
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page7));
 
-        PagerAdapter mPagerAdapter  = new FragmentAdapter(getFragmentManager(), fragments);
+        PagerAdapter mPagerAdapter  = new FragmentAdapter(getChildFragmentManager(), fragments);
 
         mPager.setAdapter(mPagerAdapter);
         return root;
