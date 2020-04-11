@@ -13,16 +13,70 @@ public class QuizAppDBHelper extends SQLiteOpenHelper {
     private static int DB_version = 1;
     private static QuizAppDBHelper quizAppDBHelper;
 
+    // Table country-continent
     public static final String TABLE_COUNTRY_CONTINENT = "countrycontinent";
     public static final String COUNTRY_CONTINENT_COLUMN_ID = "_id";
     public static final String COUNTRY_CONTINENT_COLUMN_COUNTRY = "country";
     public static final String COUNTRY_CONTINENT_COLUMN_CONTINENT = "continents";
 
-
+    // Table country-neighbours
     public static final String TABLE_COUNTRY_NEIGHBOURS = "countrynieghbours";
     public static final String COUNTRY_NEIGHBOURS_COLUMN_ID = "_id";
     public static final String COUNTRY_NEIGHBOURS_COLUMN_COUNTRY = "country";
     public static final String COUNTRY_NEIGHBOURS_COLUMN_NEIGHBOURS= "neighbours";
+
+    // Table new quiz
+
+    public static final String TABLE_NEW_QUIZ = "newquiz";
+    public static final String NEW_QUIZ_COLUMN_USERNAME = "username";
+    public static final String NEW_QUIZ_COLUMN_DATE = "date";
+    public static final String NEW_QUIZ_COLUMN_Q1 = "Q1";
+    public static final String NEW_QUIZ_COLUMN_Q2 = "Q2";
+    public static final String NEW_QUIZ_COLUMN_Q3 = "Q3";
+    public static final String NEW_QUIZ_COLUMN_Q4 = "Q4";
+    public static final String NEW_QUIZ_COLUMN_Q5 = "Q5";
+    public static final String NEW_QUIZ_COLUMN_Q6 = "Q6";
+    public static final String NEW_QUIZ_COLUMN_A1 = "A1";
+    public static final String NEW_QUIZ_COLUMN_A2 = "A2";
+    public static final String NEW_QUIZ_COLUMN_A3 = "A3";
+    public static final String NEW_QUIZ_COLUMN_A4 = "A4";
+    public static final String NEW_QUIZ_COLUMN_A5 = "A5";
+    public static final String NEW_QUIZ_COLUMN_A6 = "A6";
+
+
+    // TABLE NEW QUIZ
+    public static final String TABLE_NEW_RESULT = "newresult";
+    public static final String NEW_RESULT_COLUMN_USERNAME = "username";
+    public static final String NEW_RESULT_COLUMN_RESULT = "result";
+    public static final String NEW_RESULT_COLUMN_DATE = "date";
+
+
+
+    public static final String CREATE_NEW_RESULT =
+            "create table " + TABLE_NEW_RESULT + " ("
+                    + NEW_RESULT_COLUMN_USERNAME + " TEXT, "
+                    + NEW_RESULT_COLUMN_DATE + " TEXT "
+                    + NEW_RESULT_COLUMN_RESULT + " TEXT, "
+                    + ") ";
+
+
+    public static final String CREATE_NEW_QUIZ =
+            "create table " + TABLE_NEW_QUIZ + " ("
+                    + NEW_QUIZ_COLUMN_USERNAME + " TEXT, "
+                    + NEW_QUIZ_COLUMN_DATE + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q1 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A1 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q2 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A2 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q3 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A3 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q4 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A4 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q5 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A5 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_Q6 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_A6 + " TEXT "
+                    + ")";
 
 
     private static final String CREATE_COUNTRY_CONTINENT =

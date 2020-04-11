@@ -1,7 +1,7 @@
 package edu.uga.cs.quiz_app.datamodel;
 
 public class CountryContinent {
-    private int id;
+    private long id;
     private String country;
     private String continent;
 
@@ -11,7 +11,7 @@ public class CountryContinent {
         this.continent = "";
     }
 
-    public CountryContinent(int id, String country,String continent){
+    public CountryContinent(long id, String country,String continent){
         this.id = id;
         this.continent = continent;
         this.country = country;
@@ -33,11 +33,11 @@ public class CountryContinent {
         this.continent = continent;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

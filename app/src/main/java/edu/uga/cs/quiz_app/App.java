@@ -86,6 +86,7 @@ public class App extends Application {
                     StringBuilder neighbours = new StringBuilder();
                     for(int x = 1; x < nextLine.length; x++){
                         neighbours.append(nextLine[x]);
+                        neighbours.append(",");
                     }
                     countryNeighbours.setNeighbours(neighbours.toString());
                     quizAppData.loadCountryNeighbours(countryNeighbours);
