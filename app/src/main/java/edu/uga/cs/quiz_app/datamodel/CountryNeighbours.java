@@ -2,7 +2,7 @@ package edu.uga.cs.quiz_app.datamodel;
 
 public class CountryNeighbours {
 
-    private int id;
+    private long id;
     private String country;
     private String neighbours;
 
@@ -12,7 +12,7 @@ public class CountryNeighbours {
         this.neighbours = "";
     }
 
-    public CountryNeighbours(int id, String country,String neighbours){
+    public CountryNeighbours(long id, String country,String neighbours){
 
         this.id = id;
         this.neighbours = neighbours;
@@ -35,11 +35,11 @@ public class CountryNeighbours {
         this.neighbours = neighbours;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
