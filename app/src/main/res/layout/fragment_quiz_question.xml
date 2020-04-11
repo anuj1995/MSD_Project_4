@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/continent_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="What continent is X on?"
+        app:layout_constraintBottom_toTopOf="@+id/continent_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/continent_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/neighbor_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continent_question">
+
+        <RadioButton
+            android:id="@+id/continent_option1"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="North America" />
+
+        <RadioButton
+            android:id="@+id/continent_option2"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Africa" />
+
+        <RadioButton
+            android:id="@+id/continent_option3"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Antarctica" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/neighbor_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="What is one of X's neighbors?"
+        app:layout_constraintBottom_toTopOf="@+id/neighbor_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continent_options" />
+
+    <RadioGroup
+        android:id="@+id/neighbor_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neighbor_question">
+
+        <RadioButton
+            android:id="@+id/neighbor_option1"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/neighbor_option2"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/neighbor_option3"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>
