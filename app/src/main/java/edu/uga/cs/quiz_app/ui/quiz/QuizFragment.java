@@ -1,5 +1,5 @@
 
-package edu.uga.cs.quiz_app.ui;
+package edu.uga.cs.quiz_app.ui.quiz;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,10 +17,6 @@ public class QuizFragment extends Fragment {
     public static QuizFragment newInstance() {
 
         final QuizFragment mf = new QuizFragment();
-
-        final Bundle args = new Bundle();
-        args.putString("somedata", "somedata");
-        mf.setArguments(args);
 
         return mf;
     }

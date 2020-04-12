@@ -69,7 +69,7 @@ public class QuizViewModel extends ViewModel {
             if (!(neighbours[0].isEmpty() || neighbours.length == 1)) {
                 answer.append(neighbours[random.nextInt(neighbours.length - 1)]);
             }
-            else if(neighbours.length == 1 && neighbours[0] != "") {
+            else if(neighbours.length == 1 && !neighbours[0].isEmpty()) {
                 answer.append(neighbours[0]);
             }
             else {

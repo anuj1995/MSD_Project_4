@@ -19,12 +19,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
-import java.util.logging.Logger;
 
 import edu.uga.cs.quiz_app.R;
 import edu.uga.cs.quiz_app.datamodel.Quiz;
 import edu.uga.cs.quiz_app.ui.FragmentAdapter;
-import edu.uga.cs.quiz_app.ui.QuizEndFragment;
 
 public class QuizMainFragment extends Fragment {
 
@@ -104,7 +102,7 @@ public class QuizMainFragment extends Fragment {
                 page1.putString("neighbor_option1", neighbourOptions1[0]);
                 page1.putString("neighbor_option2", neighbourOptions1[1]);
                 page1.putString("neighbor_option3", neighbourOptions1[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page1));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page1));
 
                 Bundle page2 = new Bundle();
                 page2.putString("question", "What continent does "+ q2[0]+" belong to and which of " +
@@ -115,7 +113,7 @@ public class QuizMainFragment extends Fragment {
                 page2.putString("neighbor_option1", neighbourOptions2[0]);
                 page2.putString("neighbor_option2", neighbourOptions2[1]);
                 page2.putString("neighbor_option3", neighbourOptions2[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page2));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page2));
 
                 Bundle page3 = new Bundle();
                 page3.putString("question", "What continent does "+ q3[0]+" belong to and which of " +
@@ -126,7 +124,7 @@ public class QuizMainFragment extends Fragment {
                 page3.putString("neighbor_option1", neighbourOptions3[0]);
                 page3.putString("neighbor_option2", neighbourOptions3[1]);
                 page3.putString("neighbor_option3", neighbourOptions3[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page3));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page3));
 
                 Bundle page4 = new Bundle();
                 page4.putString("question", "What continent does "+ q4[0]+" belong to and which of " +
@@ -137,7 +135,7 @@ public class QuizMainFragment extends Fragment {
                 page4.putString("neighbor_option1", neighbourOptions4[0]);
                 page4.putString("neighbor_option2", neighbourOptions4[1]);
                 page4.putString("neighbor_option3", neighbourOptions4[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page4));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page4));
 
                 Bundle page5 = new Bundle();
                 page5.putString("question", "What continent does "+ q5[0]+" belong to and which of " +
@@ -148,7 +146,7 @@ public class QuizMainFragment extends Fragment {
                 page5.putString("neighbor_option1", neighbourOptions5[0]);
                 page5.putString("neighbor_option2", neighbourOptions5[1]);
                 page5.putString("neighbor_option3", neighbourOptions5[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page5));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page5));
 
                 Bundle page6 = new Bundle();
                 page6.putString("question", "What continent does "+ q6[0]+" belong to and which of " +
@@ -159,10 +157,10 @@ public class QuizMainFragment extends Fragment {
                 page6.putString("neighbor_option1", neighbourOptions6[0]);
                 page6.putString("neighbor_option2", neighbourOptions6[1]);
                 page6.putString("neighbor_option3", neighbourOptions6[2]);
-                fragments.add(Fragment.instantiate(getContext(), edu.uga.cs.quiz_app.ui.QuizFragment.class.getName(),page6));
+                fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page6));
 
                 Bundle page7 = new Bundle();
-                fragments.add(Fragment.instantiate(getContext(), QuizEndFragment.class.getName(),page7));
+                fragments.add(Fragment.instantiate(getContext(), QuizSubmitFragment.class.getName(),page7));
                 PagerAdapter mPagerAdapter  = new FragmentAdapter(getChildFragmentManager(), fragments);
                 mPager.setAdapter(mPagerAdapter);
 
