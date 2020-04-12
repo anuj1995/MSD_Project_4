@@ -69,11 +69,11 @@ public class HomeViewModel extends ViewModel {
             if (!(neighbours[0].isEmpty() || neighbours.length == 1)) {
                 answer.append(neighbours[random.nextInt(neighbours.length - 1)]);
             }
-            else if(neighbours.length == 1) {
+            else if(neighbours.length == 1 && neighbours[0] != "") {
                 answer.append(neighbours[0]);
             }
             else {
-                answer.append("no neighbour");
+                answer.append("No neighbour");
             }
             distinctContinents.remove(continentList.get(randomNumber));
             question.append(distinctContinents.get(random.nextInt(distinctContinents.size()-1)));
