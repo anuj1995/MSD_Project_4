@@ -16,6 +16,7 @@ import java.util.Vector;
 
 import edu.uga.cs.quiz_app.R;
 import edu.uga.cs.quiz_app.ui.FragmentAdapter;
+import edu.uga.cs.quiz_app.ui.QuizEndFragment;
 import edu.uga.cs.quiz_app.ui.QuizFragment;
 
 public class HomeFragment extends Fragment {
@@ -94,7 +95,7 @@ public class HomeFragment extends Fragment {
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page6));
 
         Bundle page7 = new Bundle();
-        fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page7));
+        fragments.add(Fragment.instantiate(getContext(), QuizEndFragment.class.getName(),page7));
 
         PagerAdapter mPagerAdapter  = new FragmentAdapter(getChildFragmentManager(), fragments);
 
