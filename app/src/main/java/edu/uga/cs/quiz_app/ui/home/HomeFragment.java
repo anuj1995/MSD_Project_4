@@ -43,66 +43,60 @@ public class HomeFragment extends Fragment {
 
         //for each fragment you want to add to the pager
         Bundle page1 = new Bundle();
-        page1.putString("continent_question", "question");
+        page1.putString("question", "question");
         page1.putString("continent_option1", "continent option 1");
         page1.putString("continent_option2", "continent option 2");
         page1.putString("continent_option3", "continent option 3");
-        page1.putString("neighbor_question", "question");
         page1.putString("neighbor_option1", "neighbor option 1");
         page1.putString("neighbor_option2", "neighbor option 2");
         page1.putString("neighbor_option3", "neighbor option 3");
         fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page1));
 
         Bundle page2 = new Bundle();
-        page2.putString("continent_question", "question");
+        page2.putString("question", "question");
         page2.putString("continent_option1", "continent option 1");
         page2.putString("continent_option2", "continent option 2");
         page2.putString("continent_option3", "continent option 3");
-        page2.putString("neighbor_question", "question");
         page2.putString("neighbor_option1", "neighbor option 1");
         page2.putString("neighbor_option2", "neighbor option 2");
         page2.putString("neighbor_option3", "neighbor option 3");
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page2));
 
         Bundle page3 = new Bundle();
-        page3.putString("continent_question", "question");
+        page3.putString("question", "question");
         page3.putString("continent_option1", "continent option 1");
         page3.putString("continent_option2", "continent option 2");
         page3.putString("continent_option3", "continent option 3");
-        page3.putString("neighbor_question", "question");
         page3.putString("neighbor_option1", "neighbor option 1");
         page3.putString("neighbor_option2", "neighbor option 2");
         page3.putString("neighbor_option3", "neighbor option 3");
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page3));
 
         Bundle page4 = new Bundle();
-        page4.putString("continent_question", "question");
+        page4.putString("question", "question");
         page4.putString("continent_option1", "continent option 1");
         page4.putString("continent_option2", "continent option 2");
         page4.putString("continent_option3", "continent option 3");
-        page4.putString("neighbor_question", "question");
         page4.putString("neighbor_option1", "neighbor option 1");
         page4.putString("neighbor_option2", "neighbor option 2");
         page4.putString("neighbor_option3", "neighbor option 3");
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page4));
 
         Bundle page5 = new Bundle();
-        page5.putString("continent_question", "question");
+        page5.putString("question", "question");
         page5.putString("continent_option1", "continent option 1");
         page5.putString("continent_option2", "continent option 2");
         page5.putString("continent_option3", "continent option 3");
-        page5.putString("neighbor_question", "question");
         page5.putString("neighbor_option1", "neighbor option 1");
         page5.putString("neighbor_option2", "neighbor option 2");
         page5.putString("neighbor_option3", "neighbor option 3");
         fragments.add(Fragment.instantiate(getContext(),QuizFragment.class.getName(),page5));
 
         Bundle page6 = new Bundle();
-        page6.putString("continent_question", "question");
+        page6.putString("question", "question");
         page6.putString("continent_option1", "continent option 1");
         page6.putString("continent_option2", "continent option 2");
         page6.putString("continent_option3", "continent option 3");
-        page6.putString("neighbor_question", "question");
         page6.putString("neighbor_option1", "neighbor option 1");
         page6.putString("neighbor_option2", "neighbor option 2");
         page6.putString("neighbor_option3", "neighbor option 3");

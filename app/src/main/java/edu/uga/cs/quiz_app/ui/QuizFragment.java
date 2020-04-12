@@ -1,3 +1,4 @@
+
 package edu.uga.cs.quiz_app.ui;
 
 import android.os.Bundle;
@@ -38,9 +39,9 @@ public class QuizFragment extends Fragment {
         // Inflate and locate the main ImageView
         final View v = inflater.inflate(R.layout.fragment_quiz_question, container, false);
         //...
-        String continent_question = getArguments().getString("continent_question");
-        TextView continent_question_view = v.findViewById(R.id.continent_question);
-        continent_question_view.setText(continent_question);
+        String question = getArguments().getString("question");
+        TextView question_view = v.findViewById(R.id.question);
+        question_view.setText(question);
 
         String continent_option1 = getArguments().getString("continent_option1");
         TextView continent_option1_button = v.findViewById(R.id.continent_option1);
@@ -53,10 +54,6 @@ public class QuizFragment extends Fragment {
         String continent_option3 = getArguments().getString("continent_option3");
         TextView continent_option3_button = v.findViewById(R.id.continent_option3);
         continent_option3_button.setText(continent_option3);
-
-        String neighbor_question = getArguments().getString("neighbor_question");
-        TextView neighbor_question_view = v.findViewById(R.id.neighbor_question);
-        neighbor_question_view.setText(neighbor_question);
 
         String neighbor_option1 = getArguments().getString("neighbor_option1");
         TextView neighbor_option1_button = v.findViewById(R.id.neighbor_option1);

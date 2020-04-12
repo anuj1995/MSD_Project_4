@@ -7,12 +7,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/continent_question"
+        android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="16dp"
-        android:text="What continent is X on?"
+        android:gravity="center"
+        android:text="What continent is X on, and what is one of its neighbors??"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/continent_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,13 +24,11 @@
         android:id="@+id/continent_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="50dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/neighbor_question"
+        app:layout_constraintBottom_toTopOf="@+id/neighbor_options"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continent_question">
+        app:layout_constraintTop_toBottomOf="@+id/question">
 
         <RadioButton
             android:id="@+id/continent_option1"
@@ -49,29 +49,16 @@
             android:text="Antarctica" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/neighbor_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="16dp"
-        android:text="What is one of X's neighbors?"
-        app:layout_constraintBottom_toTopOf="@+id/neighbor_options"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continent_options" />
-
     <RadioGroup
         android:id="@+id/neighbor_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginBottom="100dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neighbor_question">
+        app:layout_constraintTop_toBottomOf="@+id/continent_options">
 
         <RadioButton
             android:id="@+id/neighbor_option1"
