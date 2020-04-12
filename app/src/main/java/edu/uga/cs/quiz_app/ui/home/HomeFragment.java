@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment {
                 PagerAdapter mPagerAdapter  = new FragmentAdapter(getChildFragmentManager(), fragments);
                 mPager.setAdapter(mPagerAdapter);
             }
+
         });
 
 
