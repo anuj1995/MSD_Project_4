@@ -84,10 +84,17 @@ public class App extends Application {
                 while( ( nextLine = reader.readNext() ) != null ) {
                     countryNeighbours.setCountry(nextLine[0]);
                     StringBuilder neighbours = new StringBuilder();
-                    for(int x = 1; x < nextLine.length; x++){
-                        neighbours.append(nextLine[x]);
-                        neighbours.append(",");
+                    int x = 1;
+                    for(x = 1; x < nextLine.length; x++){
+                        if (!nextLine[x].isEmpty()){
+                            neighbours.append(nextLine[x]);
+                            neighbours.append(",");
+                        }
                     }
+                    if(neighbours.length() > 2){
+                        neighbours.deleteCharAt(neighbours.length()-1);
+                    }
+
                     countryNeighbours.setNeighbours(neighbours.toString());
                     quizAppData.loadCountryNeighbours(countryNeighbours);
                 }
