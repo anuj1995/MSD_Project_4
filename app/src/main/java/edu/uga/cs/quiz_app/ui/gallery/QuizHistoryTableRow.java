@@ -12,22 +12,22 @@ public class QuizHistoryTableRow extends TableRow {
         super(context);
 
         TextView userView = new TextView(context);
-        userView.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
         userView.setText(user);
         userView.setTextColor(Color.BLACK);
         userView.setTextSize(22);
+        userView.setLayoutParams(new LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
 
         TextView dateView = new TextView(context);
-        dateView.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
         dateView.setText(date);
         dateView.setTextColor(Color.BLACK);
         dateView.setTextSize(22);
+        dateView.setLayoutParams(new LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
 
         TextView scoreView = new TextView(context);
-        scoreView.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
         scoreView.setText(score);
         scoreView.setTextColor(Color.BLACK);
         scoreView.setTextSize(22);
+        scoreView.setLayoutParams(new LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
 
         addView(userView);
         addView(dateView);

@@ -24,10 +24,11 @@ public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
 
-    public void addEntryToTable(TableLayout table, String user, String date, String score) {
+    public TableRow getNewEntry(Context context, String user, String date, String score) {
 
-        QuizHistoryTableRow row = new QuizHistoryTableRow(getContext(), user, date, score);
-        table.addView(row, 5);
+        QuizHistoryTableRow row = new QuizHistoryTableRow(context, user, date, score);
+        row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        return row;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,8 +36,8 @@ public class GalleryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         TableLayout table = root.findViewById(R.id.quiz_history_table);
-        addEntryToTable(table, "user", "date", "score");
-
+        TableRow row = getNewEntry(getContext(), "user", "date", "score");
+        table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         return root;
     }
 
