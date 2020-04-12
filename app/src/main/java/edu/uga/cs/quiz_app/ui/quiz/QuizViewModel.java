@@ -1,4 +1,4 @@
-package edu.uga.cs.quiz_app.ui.home;
+package edu.uga.cs.quiz_app.ui.quiz;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -26,14 +26,14 @@ import edu.uga.cs.quiz_app.datamodel.CountryContinent;
 import edu.uga.cs.quiz_app.datamodel.CountryNeighbours;
 import edu.uga.cs.quiz_app.datamodel.Quiz;
 
-public class HomeViewModel extends ViewModel {
+public class QuizViewModel extends ViewModel {
 
     private MutableLiveData<Quiz> mQuiz;
     QuizAppData quizAppData = null;
     Random random = new Random();
     private List<CountryContinent> countryContinentList;
     private List<CountryNeighbours> countryNeighboursList;
-    HomeViewModel(Context context) {
+    QuizViewModel(Context context) {
         quizAppData = new QuizAppData(context);
         mQuiz = new MutableLiveData<>();
         new databaseReader().execute(context);

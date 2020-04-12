@@ -13,6 +13,8 @@ import java.util.List;
 
 import edu.uga.cs.quiz_app.datamodel.CountryContinent;
 import edu.uga.cs.quiz_app.datamodel.CountryNeighbours;
+import edu.uga.cs.quiz_app.datamodel.Quiz;
+import edu.uga.cs.quiz_app.datamodel.QuizResults;
 
 public class QuizAppData {
 
@@ -99,29 +101,30 @@ public class QuizAppData {
         List<CountryNeighbours> countryNeighbours = new ArrayList<>();
         Cursor cursor = null;
         try {
-            cursor = db.query( QuizAppDBHelper.TABLE_COUNTRY_NEIGHBOURS,
+            cursor = db.query(QuizAppDBHelper.TABLE_COUNTRY_NEIGHBOURS,
                     new String[]{
                             QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_ID,
                             QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_COUNTRY,
                             QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_NEIGHBOURS
                     },
-                    null, null, null, null, null );
+                    null, null, null, null, null);
 
-            if (cursor.getCount() > 0 ){
-                while (cursor.moveToNext()){
-                    CountryNeighbours countryNeighbour= new CountryNeighbours(
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    CountryNeighbours countryNeighbour = new CountryNeighbours(
                             cursor.getLong(cursor.getColumnIndex(QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_ID)),
                             cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_COUNTRY)),
                             cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.COUNTRY_NEIGHBOURS_COLUMN_NEIGHBOURS))
                     );
                     countryNeighbours.add(countryNeighbour);
 
-                    Log.d( DEBUG_TAG, "Retrieved CountryNeighbour: " + countryNeighbour );
+                    Log.d(DEBUG_TAG, "Retrieved CountryNeighbour: " + countryNeighbour);
                 }
-                Log.d( DEBUG_TAG, "Number of records from DB: " + cursor.getCount() );
+                Log.d(DEBUG_TAG, "Number of records from DB: " + cursor.getCount());
             }
-        }catch (Exception e){
-            Log.e( DEBUG_TAG, "Exception caught: " + e );
+        }
+        catch (Exception e) {
+            Log.e(DEBUG_TAG, "Exception caught: " + e);
         }
         finally{
             // we should close the cursor
@@ -129,18 +132,133 @@ public class QuizAppData {
                 cursor.close();
             }
         }
+        // we should close the cursor
         return  countryNeighbours;
     }
 
 
 
-    private void createNewQuiz(String userName){
+    public void createTableQuiz(){
         db.execSQL(QuizAppDBHelper.CREATE_NEW_QUIZ);
         Log.d( DEBUG_TAG, "Table " + QuizAppDBHelper.TABLE_NEW_QUIZ + " created" );
-        this.open();
-
-
     }
 
+    public void StoreQuiz(Quiz quiz){
+        ContentValues values = new ContentValues();
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_USERNAME,quiz.getUserName());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_DATE,quiz.getDate());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q1,quiz.getQ1());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q2,quiz.getQ2());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q3,quiz.getQ3());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q4,quiz.getQ4());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q5,quiz.getQ5());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q6,quiz.getQ6());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A1,quiz.getA1());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A2,quiz.getA2());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A3,quiz.getA3());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A4,quiz.getA4());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A5,quiz.getA5());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_A6,quiz.getA6());
+        values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_RESULT,quiz.getResult());
 
+        long id = db.insert( QuizAppDBHelper.TABLE_NEW_QUIZ, null, values );
+        Log.d( DEBUG_TAG, "Stored new Country Neighbour with id: " + id );
+    }
+
+    public Quiz retrieveCurrentQuiz(){
+        Cursor cursor = null;
+        Quiz quiz = null;
+        try {
+            cursor = db.query( QuizAppDBHelper.TABLE_NEW_QUIZ,
+                    new String[]{
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_USERNAME,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_DATE,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q1,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q2,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q3,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q4,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q5,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_Q6,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A1,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A2,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A3,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A4,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A5,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_A6,
+                            QuizAppDBHelper.NEW_QUIZ_COLUMN_RESULT,
+
+                    },
+                    null, null, null, null, null );
+
+            if (cursor.getCount() > 0 ) {
+                while (cursor.moveToNext()) {
+                    quiz = new Quiz(
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_USERNAME)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_DATE)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q1)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q2)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q3)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q4)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q5)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_Q6))
+                    );
+                    quiz.setA1(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A1)));
+                    quiz.setA2(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A2)));
+                    quiz.setA3(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A3)));
+                    quiz.setA4(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A4)));
+                    quiz.setA5(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A5)));
+                    quiz.setA6(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_A6)));
+                    quiz.setResult(cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_RESULT)));
+                }
+                Log.d(DEBUG_TAG, "Number of records from DB: " + cursor.getCount());
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            // we should close the cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return quiz;
+    }
+
+    public List<QuizResults> retrieveAllQuizResults(){
+        Cursor cursor = null;
+        List<QuizResults> results = new ArrayList<>();
+        try {
+            cursor = db.query( QuizAppDBHelper.TABLE_NEW_RESULT,
+                    new String[]{
+                            QuizAppDBHelper.NEW_RESULT_COLUMN_RESULT,
+                            QuizAppDBHelper.NEW_RESULT_COLUMN_USERNAME,
+                            QuizAppDBHelper.NEW_RESULT_COLUMN_DATE
+
+                    },
+                    null, null, null, null, null );
+
+            if (cursor.getCount() > 0 ) {
+                while (cursor.moveToNext()) {
+                    QuizResults result = new QuizResults(
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_RESULT_COLUMN_USERNAME)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_QUIZ_COLUMN_DATE)),
+                            cursor.getString(cursor.getColumnIndex(QuizAppDBHelper.NEW_RESULT_COLUMN_RESULT))
+                    );
+                    results.add(result);
+                }
+                Log.d(DEBUG_TAG, "Number of records from DB: " + cursor.getCount());
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            // we should close the cursor
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return results;
+    }
 }

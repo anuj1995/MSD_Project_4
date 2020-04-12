@@ -1,4 +1,4 @@
-package edu.uga.cs.quiz_app.ui.home;
+package edu.uga.cs.quiz_app.ui.quiz;
 
 import android.content.Context;
 
@@ -17,6 +17,6 @@ public class QuizViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new HomeViewModel(context);
+        return (T) new QuizViewModel(context);
     }
 }

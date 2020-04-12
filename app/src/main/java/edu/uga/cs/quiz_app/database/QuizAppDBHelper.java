@@ -42,6 +42,7 @@ public class QuizAppDBHelper extends SQLiteOpenHelper {
     public static final String NEW_QUIZ_COLUMN_A4 = "A4";
     public static final String NEW_QUIZ_COLUMN_A5 = "A5";
     public static final String NEW_QUIZ_COLUMN_A6 = "A6";
+    public static final String NEW_QUIZ_COLUMN_RESULT = "result";
 
 
     // TABLE NEW QUIZ
@@ -55,13 +56,13 @@ public class QuizAppDBHelper extends SQLiteOpenHelper {
     public static final String CREATE_NEW_RESULT =
             "create table " + TABLE_NEW_RESULT + " ("
                     + NEW_RESULT_COLUMN_USERNAME + " TEXT, "
-                    + NEW_RESULT_COLUMN_DATE + " TEXT "
-                    + NEW_RESULT_COLUMN_RESULT + " TEXT, "
+                    + NEW_RESULT_COLUMN_DATE + " TEXT, "
+                    + NEW_RESULT_COLUMN_RESULT + " TEXT "
                     + ") ";
 
 
     public static final String CREATE_NEW_QUIZ =
-            "create table " + TABLE_NEW_QUIZ + " ("
+            "create table if not exists " + TABLE_NEW_QUIZ + " ("
                     + NEW_QUIZ_COLUMN_USERNAME + " TEXT, "
                     + NEW_QUIZ_COLUMN_DATE + " TEXT, "
                     + NEW_QUIZ_COLUMN_Q1 + " TEXT, "
@@ -75,7 +76,8 @@ public class QuizAppDBHelper extends SQLiteOpenHelper {
                     + NEW_QUIZ_COLUMN_Q5 + " TEXT, "
                     + NEW_QUIZ_COLUMN_A5 + " TEXT, "
                     + NEW_QUIZ_COLUMN_Q6 + " TEXT, "
-                    + NEW_QUIZ_COLUMN_A6 + " TEXT "
+                    + NEW_QUIZ_COLUMN_A6 + " TEXT, "
+                    + NEW_QUIZ_COLUMN_RESULT + " TEXT "
                     + ")";
 
 
@@ -110,6 +112,8 @@ public class QuizAppDBHelper extends SQLiteOpenHelper {
         Log.d( DEBUG_TAG, "Table " + TABLE_COUNTRY_CONTINENT + " created" );
         db.execSQL( CREATE_COUNTRY_NEIGHBOURS );
         Log.d( DEBUG_TAG,"Table " + TABLE_COUNTRY_NEIGHBOURS + " created" );
+        db.execSQL(CREATE_NEW_RESULT);
+        Log.d( DEBUG_TAG,"Table " + TABLE_NEW_RESULT + " created" );
     }
 
     @Override
