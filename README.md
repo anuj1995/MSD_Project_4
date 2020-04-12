@@ -3,10 +3,13 @@ Workload division:
 Anuj:
   Navigation Bar,
   Database,
-  Database & UI interaction
+  Database helper classes,
+  Database & UI interaction for quiz
   
 Dakota:
   Quiz view, 
-  Swiping,
+  Swiping.
+  Quiz score view,
   Quiz history view,
-  Splash and intro screen
+  Splash and intro screen,
+  Database & UI interaction for quiz history
