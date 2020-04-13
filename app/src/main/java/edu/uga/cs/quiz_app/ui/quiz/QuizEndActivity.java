@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.opencsv.CSVReader;
 
 import java.io.InputStream;

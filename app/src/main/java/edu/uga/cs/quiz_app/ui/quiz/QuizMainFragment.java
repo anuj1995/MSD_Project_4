@@ -1,11 +1,13 @@
 package edu.uga.cs.quiz_app.ui.quiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,12 +26,13 @@ import java.util.Vector;
 import edu.uga.cs.quiz_app.MainActivity;
 import edu.uga.cs.quiz_app.R;
 import edu.uga.cs.quiz_app.datamodel.Quiz;
-import edu.uga.cs.quiz_app.ui.FragmentAdapter;
 
 public class QuizMainFragment extends Fragment {
 
     private QuizViewModel quizViewModel;
+    public FragmentAdapter mPagerAdapter;
     private ScoreViewModel scoreViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         Context context= this.getContext();
@@ -39,6 +42,7 @@ public class QuizMainFragment extends Fragment {
         scoreViewModel = ScoreViewModel.getInstance();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ViewPager mPager = root.findViewById(R.id.pager);
+        //FragmentAdapter mPagerAdapter;
         quizViewModel.getQuiz().observe(this, new Observer<Quiz>() {
             @Override
             public void onChanged(Quiz quiz) {
@@ -194,7 +198,7 @@ public class QuizMainFragment extends Fragment {
 
                 Bundle page7 = new Bundle();
                 fragments.add(Fragment.instantiate(getContext(), QuizSubmitFragment.class.getName(),page7));
-                PagerAdapter mPagerAdapter  = new FragmentAdapter(getChildFragmentManager(), fragments);
+                mPagerAdapter = new FragmentAdapter(getChildFragmentManager(), fragments);
                 mPager.setAdapter(mPagerAdapter);
 
             }
@@ -208,6 +212,13 @@ public class QuizMainFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
+                if (position == 6) {
+                    Fragment frag = mPagerAdapter.getItem(0);
+                    Log.d("On Page Selected", "last page");
+
+                    Intent intent = new Intent(getActivity(), QuizEndActivity.class);
+                    startActivity(intent);
+                }
                 scoreViewModel.updatePosition(position);
             }
 
