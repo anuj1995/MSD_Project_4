@@ -14,12 +14,15 @@ import java.io.InputStreamReader;
 import edu.uga.cs.quiz_app.database.QuizAppData;
 import edu.uga.cs.quiz_app.datamodel.CountryContinent;
 import edu.uga.cs.quiz_app.datamodel.CountryNeighbours;
+import edu.uga.cs.quiz_app.ui.quiz.ScoreViewModel;
 
 public class App extends Application {
 
     QuizAppData quizAppData = null;
     @Override
     public void onCreate() {
+
+        ScoreViewModel scoreViewModel =  ScoreViewModel.getInstance();
         if(!checkDataBaseExistence(this.getDatabasePath("quizapp.db").getPath())){
             quizAppData = new QuizAppData(this);
             new CountryContinentWriter().execute(this);

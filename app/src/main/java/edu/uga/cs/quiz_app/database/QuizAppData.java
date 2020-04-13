@@ -162,7 +162,16 @@ public class QuizAppData {
         values.put(QuizAppDBHelper.NEW_QUIZ_COLUMN_RESULT,quiz.getResult());
 
         long id = db.insert( QuizAppDBHelper.TABLE_NEW_QUIZ, null, values );
-        Log.d( DEBUG_TAG, "Stored new Country Neighbour with id: " + id );
+        Log.d( DEBUG_TAG, "Stored new Quiz with id: " + id );
+    }
+
+    public void storeResults(QuizResults quizResults){
+        ContentValues values = new ContentValues();
+        values.put(QuizAppDBHelper.NEW_RESULT_COLUMN_USERNAME,quizResults.getUsername());
+        values.put(QuizAppDBHelper.NEW_RESULT_COLUMN_DATE,quizResults.getDate());
+        values.put(QuizAppDBHelper.NEW_RESULT_COLUMN_RESULT,quizResults.getResult());
+        long id = db.insert( QuizAppDBHelper.TABLE_NEW_QUIZ, null, values );
+        Log.d( DEBUG_TAG, "Stored new Result with id: " + id );
     }
 
     public Quiz retrieveCurrentQuiz(){
