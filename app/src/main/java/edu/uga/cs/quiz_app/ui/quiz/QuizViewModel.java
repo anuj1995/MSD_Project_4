@@ -6,7 +6,7 @@ import android.os.Build;
 import android.util.Log;
 import android.util.Pair;
 
-import androidx.lifecycle.AndroidViewModel;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -73,18 +73,20 @@ public class QuizViewModel extends ViewModel {
                 answer.append(neighbours[0]);
             }
             else {
-                answer.append("No neighbour");
+                answer.append("no neighbours");
             }
             distinctContinents.remove(continentList.get(randomNumber));
-            question.append(distinctContinents.get(random.nextInt(distinctContinents.size()-1)));
+            String option1 = distinctContinents.get(random.nextInt(distinctContinents.size()-1));
+            question.append(option1);
             question.append(",");
-            distinctContinents.remove(continentList.get(randomNumber));
+            distinctContinents.remove(option1);
             question.append(distinctContinents.get(random.nextInt(distinctContinents.size()-1)));
             question.append(",");
             distinctCountries.remove(countryList.get(randomNumber));
-            question.append(distinctCountries.get(random.nextInt(distinctCountries.size()-1)));
+            String option2 = distinctCountries.get(random.nextInt(distinctCountries.size()-1));
+            question.append(option2);
             question.append(",");
-            distinctCountries.remove(countryList.get(randomNumber));
+            distinctCountries.remove(option2);
             question.append(distinctCountries.get(random.nextInt(distinctCountries.size()-1)));
             question.append(",");
             questions.add(question);

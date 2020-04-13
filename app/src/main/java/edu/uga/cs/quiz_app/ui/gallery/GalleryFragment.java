@@ -22,9 +22,11 @@ import edu.uga.cs.quiz_app.R;
 
 public class GalleryFragment extends Fragment {
 
+
     private GalleryViewModel galleryViewModel;
 
     public TableRow getNewEntry(Context context, String user, String date, String score) {
+
 
         QuizHistoryTableRow row = new QuizHistoryTableRow(context, user, date, score);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -40,5 +42,6 @@ public class GalleryFragment extends Fragment {
         table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         return root;
     }
+
 
 }

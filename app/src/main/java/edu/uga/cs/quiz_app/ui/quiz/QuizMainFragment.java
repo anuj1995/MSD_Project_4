@@ -16,10 +16,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
 
+import edu.uga.cs.quiz_app.MainActivity;
 import edu.uga.cs.quiz_app.R;
 import edu.uga.cs.quiz_app.datamodel.Quiz;
 import edu.uga.cs.quiz_app.ui.FragmentAdapter;
@@ -27,13 +29,14 @@ import edu.uga.cs.quiz_app.ui.FragmentAdapter;
 public class QuizMainFragment extends Fragment {
 
     private QuizViewModel quizViewModel;
-
+    private ScoreViewModel scoreViewModel;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        Context context = this.getContext();
+        Context context= this.getContext();
         List<Fragment> fragments = new Vector<Fragment>();
         quizViewModel =
                 ViewModelProviders.of(this,new QuizViewModelFactory(context)).get(QuizViewModel.class);
+        scoreViewModel = ScoreViewModel.getInstance();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ViewPager mPager = root.findViewById(R.id.pager);
         quizViewModel.getQuiz().observe(this, new Observer<Quiz>() {
@@ -58,39 +61,57 @@ public class QuizMainFragment extends Fragment {
                 String[] continentOptions1 = getRandomOptions(new String[]{
                         q1[1],q1[2],a1[0]
                 });
-                String[] neighbourOptions1 = getRandomOptions(new String[]{
-                        q1[3],q1[4],a1[1]
-                });
+                String[] neighbourOptions1;
+                if(a1[1].equals("no neighbours")){
+                   neighbourOptions1 = getRandomOptions(new String[]{q1[3],q1[4],"no neighbours"});
+                }else {
+                    neighbourOptions1 = getRandomOptions(new String[]{q1[3],a1[1],"no neighbours"});
+                }
                 String[] continentOptions2 = getRandomOptions(new String[]{
                         q2[1],q2[2],a2[0]
                 });
-                String[] neighbourOptions2 = getRandomOptions(new String[]{
-                        q2[3],q2[4],a2[1]
-                });
+                String[] neighbourOptions2;
+                if(a2[1].equals("no neighbours")){
+                    neighbourOptions2 = getRandomOptions(new String[]{q2[3],q2[4],"no neighbours"});
+                }else {
+                    neighbourOptions2 = getRandomOptions(new String[]{q2[3],a2[1],"no neighbours"});
+                }
                 String[] continentOptions3 = getRandomOptions(new String[]{
                         q3[1],q3[2],a3[0]
                 });
-                String[] neighbourOptions3 = getRandomOptions(new String[]{
-                        q3[3],q3[4],a3[1]
-                });
+                String[] neighbourOptions3;
+                if(a3[1].equals("no neighbours")){
+                    neighbourOptions3 = getRandomOptions(new String[]{q3[3],q3[4],"no neighbours"});
+                }else {
+                    neighbourOptions3 = getRandomOptions(new String[]{q3[3],a3[1],"no neighbours"});
+                }
                 String[] continentOptions4 = getRandomOptions(new String[]{
                         q4[1],q4[2],a4[0]
                 });
-                String[] neighbourOptions4 = getRandomOptions(new String[]{
-                        q4[3],q3[4],a4[1]
-                });
+                String[] neighbourOptions4;
+                if(a4[1].equals("no neighbours")){
+                    neighbourOptions4 = getRandomOptions(new String[]{q4[3],q4[4],"no neighbours"});
+                }else {
+                    neighbourOptions4 = getRandomOptions(new String[]{q4[3],a4[1],"no neighbours"});
+                }
                 String[] continentOptions5 = getRandomOptions(new String[]{
                         q5[1],q5[2],a5[0]
                 });
-                String[] neighbourOptions5 = getRandomOptions(new String[]{
-                        q5[3],q5[4],a5[1]
-                });
+                String[] neighbourOptions5;
+                if(a5[1].equals("no neighbours")){
+                    neighbourOptions5 = getRandomOptions(new String[]{q5[3],q5[4],"no neighbours"});
+                }else {
+                    neighbourOptions5 = getRandomOptions(new String[]{q5[3],a5[1],"no neighbours"});
+                }
                 String[] continentOptions6 = getRandomOptions(new String[]{
                         q6[1],q6[2],a6[0]
                 });
-                String[] neighbourOptions6 = getRandomOptions(new String[]{
-                        q6[3],q6[4],a6[1]
-                });
+                String[] neighbourOptions6;
+                if(a6[1].equals("no neighbours")){
+                    neighbourOptions6 = getRandomOptions(new String[]{q6[3],q6[4],"no neighbours"});
+                }else {
+                    neighbourOptions6 = getRandomOptions(new String[]{q6[3],a6[1],"no neighbours"});
+                }
 
 
                 Bundle page1 = new Bundle();
@@ -102,6 +123,8 @@ public class QuizMainFragment extends Fragment {
                 page1.putString("neighbor_option1", neighbourOptions1[0]);
                 page1.putString("neighbor_option2", neighbourOptions1[1]);
                 page1.putString("neighbor_option3", neighbourOptions1[2]);
+                page1.putString("continentAnswer",a1[0]);
+                page1.putString("neighbourAnswer",a1[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page1));
 
                 Bundle page2 = new Bundle();
@@ -113,6 +136,8 @@ public class QuizMainFragment extends Fragment {
                 page2.putString("neighbor_option1", neighbourOptions2[0]);
                 page2.putString("neighbor_option2", neighbourOptions2[1]);
                 page2.putString("neighbor_option3", neighbourOptions2[2]);
+                page2.putString("continentAnswer",a2[0]);
+                page2.putString("neighbourAnswer",a2[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page2));
 
                 Bundle page3 = new Bundle();
@@ -124,6 +149,8 @@ public class QuizMainFragment extends Fragment {
                 page3.putString("neighbor_option1", neighbourOptions3[0]);
                 page3.putString("neighbor_option2", neighbourOptions3[1]);
                 page3.putString("neighbor_option3", neighbourOptions3[2]);
+                page3.putString("continentAnswer",a3[0]);
+                page3.putString("neighbourAnswer",a3[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page3));
 
                 Bundle page4 = new Bundle();
@@ -135,6 +162,8 @@ public class QuizMainFragment extends Fragment {
                 page4.putString("neighbor_option1", neighbourOptions4[0]);
                 page4.putString("neighbor_option2", neighbourOptions4[1]);
                 page4.putString("neighbor_option3", neighbourOptions4[2]);
+                page4.putString("continentAnswer",a4[0]);
+                page4.putString("neighbourAnswer",a4[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page4));
 
                 Bundle page5 = new Bundle();
@@ -146,6 +175,8 @@ public class QuizMainFragment extends Fragment {
                 page5.putString("neighbor_option1", neighbourOptions5[0]);
                 page5.putString("neighbor_option2", neighbourOptions5[1]);
                 page5.putString("neighbor_option3", neighbourOptions5[2]);
+                page5.putString("continentAnswer",a5[0]);
+                page5.putString("neighbourAnswer",a5[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page5));
 
                 Bundle page6 = new Bundle();
@@ -157,6 +188,8 @@ public class QuizMainFragment extends Fragment {
                 page6.putString("neighbor_option1", neighbourOptions6[0]);
                 page6.putString("neighbor_option2", neighbourOptions6[1]);
                 page6.putString("neighbor_option3", neighbourOptions6[2]);
+                page6.putString("continentAnswer",a6[0]);
+                page6.putString("neighbourAnswer",a6[1]);
                 fragments.add(Fragment.instantiate(getContext(), QuizFragment.class.getName(),page6));
 
                 Bundle page7 = new Bundle();
@@ -167,16 +200,15 @@ public class QuizMainFragment extends Fragment {
             }
 
         });
-
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("On PageChanged", "blah");
+
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                scoreViewModel.updatePosition(position);
             }
 
             @Override
@@ -184,6 +216,8 @@ public class QuizMainFragment extends Fragment {
 
             }
         });
+
+
 
         return root;
     }
