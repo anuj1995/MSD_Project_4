@@ -45,7 +45,7 @@ public class QuizEndActivity extends AppCompatActivity {
         continentMap = scoreViewModel.getContinentScore();
         neighbourMap = scoreViewModel.getNeighbourScore();
         for(int i =0 ; i<6 ; i++ ){
-          if(Objects.equals(continentMap.get(i), neighbourMap.get(i))){
+          if(continentMap.get(i).equals( neighbourMap.get(i))){
               score++;
           }
         }
