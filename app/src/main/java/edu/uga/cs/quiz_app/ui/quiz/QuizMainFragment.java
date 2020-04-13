@@ -212,13 +212,6 @@ public class QuizMainFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 6) {
-                    Fragment frag = mPagerAdapter.getItem(0);
-                    Log.d("On Page Selected", "last page");
-
-                    Intent intent = new Intent(getActivity(), QuizEndActivity.class);
-                    startActivity(intent);
-                }
                 scoreViewModel.updatePosition(position);
             }
 
