@@ -1,4 +1,4 @@
-package edu.uga.cs.quiz_app.ui;
+package edu.uga.cs.quiz_app.ui.quiz;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

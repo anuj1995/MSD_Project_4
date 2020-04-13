@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -33,91 +35,78 @@ public class GalleryFragment extends Fragment {
     private GalleryViewModel galleryViewModel;
     private QuizAppData quizAppData;
     private List<QuizResults> resultsList;
-    private TableLayout table;
     private QuizResultsReader reader;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter recyclerAdapter;
+
     public TableRow getNewEntry(Context context, String user, String date, String score) {
-
-
         QuizHistoryTableRow row = new QuizHistoryTableRow(context, user, date, score);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
         return row;
     }
-/**
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        View root = getLayoutInflater().inflate(R.layout.fragment_gallery, null, false);
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.quiz_history_table);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        quizAppData = new QuizAppData(getContext());
+        new QuizResultsReader().execute();
     }
-*/
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
 
-        table = root.findViewById(R.id.quiz_history_table);
-        TableRow row = getNewEntry(getContext(), "user", "date", "score");
-        table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        recyclerView = (RecyclerView) root.findViewById(R.id.quiz_history_table);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
 
 
         return root;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        quizAppData = new QuizAppData(getContext());
-        reader = new QuizResultsReader();
-        reader.execute(getContext());
-    }
-
-
-    private class QuizResultsReader extends AsyncTask<Context,Void,Void> {
+    private class QuizResultsReader extends AsyncTask<Void,Void, List<QuizResults>> {
 
         @Override
-        protected Void doInBackground(Context... context) {
+        protected List<QuizResults> doInBackground(Void... params) {
             android.os.Debug.waitForDebugger();
-            openAppData();
-            return null;
+            String TAG = "QuizResults reader";
+            try {
+                quizAppData.open();
+                resultsList = quizAppData.retrieveAllQuizResults();
+            }
+            catch (Exception e){
+                Log.e(TAG,e.toString());
+            }
+
+            return resultsList;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(List<QuizResults> resultsList) {
+            super.onPostExecute(resultsList);
             final String DEBUG_TAG = "onPostExecute";
-            populateTable();
+
+            QuizResults test = new QuizResults("user", "date", "score");
+            resultsList.add(test);
+
+            recyclerAdapter = new QuizResultsRecyclerAdapter(resultsList);
+            recyclerView.setAdapter(recyclerAdapter);
+
+
+            quizAppData.close();
             Log.d( DEBUG_TAG, " QuizResults retrieved");
 
         }
-    }
-
-    public void openAppData() {
-        android.os.Debug.waitForDebugger();
-        String TAG = "QuizResults reader";
-        try {
-            quizAppData.open();
-            resultsList = quizAppData.retrieveAllQuizResults();
-        }
-        catch (Exception e){
-            Log.e(TAG,e.toString());
-        }
-    }
-
-    public void populateTable() {
-        String user, date, score;
-
-        for (QuizResults results: resultsList) {
-            user = results.getUsername();
-            date = results.getDate();
-            score = results.getResult();
-
-            TableRow row = getNewEntry(getContext(), user, date, score);
-            table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-        }
-
-        TableRow row = getNewEntry(getContext(), "user", "date", "score");
-        table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-        quizAppData.close();
     }
 
 }
